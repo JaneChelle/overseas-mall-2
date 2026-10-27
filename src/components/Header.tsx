@@ -59,7 +59,7 @@ export function Header(props: HeaderProps) {
         <div className="page-width header-main">
           <div className="brand-group">
             <button className="icon-button mobile-menu-button" aria-label="Open navigation" onClick={() => setMenuOpen(true)}><Menu size={23} /></button>
-            <a className="wordmark" href="/" onClick={event => { event.preventDefault(); props.onNavigate('all'); scrollToTop() }} aria-label="Form and Field home">
+            <a className="wordmark" href={import.meta.env.BASE_URL} onClick={event => { event.preventDefault(); props.onNavigate('all'); scrollToTop() }} aria-label="Form and Field home">
               form<span className="brand-amp">&</span>field<span className="brand-period">.</span>
             </a>
           </div>

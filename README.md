@@ -23,6 +23,20 @@ npm run test:e2e
 
 浏览器测试使用已安装的 Google Chrome；自动连接或启动本地开发服务，覆盖 1440、768、390、375px。截图保存在 `artifacts/`，失败记录保存在 `test-results/`。
 
+## GitHub Pages 发布
+
+在 `main` 源码分支运行：
+
+```bash
+npm run deploy
+```
+
+发布前自动执行单元测试、生产打包，以及桌面和手机在 `/overseas-mall-2/` 子路径下的资源与购物流程测试。全部通过后，仅把 `dist/` 内容发布到 `gh-pages` 分支根目录，并保留该分支历史。
+
+GitHub 仓库的 Settings → Pages 应选择 Deploy from a branch，分支为 `gh-pages`、目录为 `/ (root)`。不要把源码分支的 `index.html` 作为静态页面发布。
+
+开发地址仍是 `http://localhost:5173/`。生产构建和 `npm run preview` 使用 `/overseas-mall-2/`；脚本、样式、图片、字体和图标都会包含此项目路径。修改仓库名称时需同步更新 `vite.config.ts` 中的 `GITHUB_PAGES_BASE`。
+
 ## 目录
 
 - `src/data/products.ts`：12 件示例商品；金额统一使用整数美分，库存由同一商品的全部颜色共享。

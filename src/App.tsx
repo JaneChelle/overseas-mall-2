@@ -11,6 +11,7 @@ import { useShop } from './hooks/useShop'
 import { CENTS_PER_DOLLAR, filterProducts, getCartTotals, MAX_CATALOG_PRICE } from './lib/shop'
 import type { Category, Collection, Product, SortOrder } from './lib/shop'
 import { preferredScrollBehavior, scrollToTop } from './lib/scroll'
+import { publicAsset } from './lib/assets'
 
 const TOAST_DURATION_MS = 4200
 
@@ -138,7 +139,7 @@ export default function App() {
       <Header query={query} onQuery={changeQuery} category={category} collection={collection} onNavigate={navigate} savedOnly={savedOnly} savedCount={savedIds.length} onSaved={showSaved} cartCount={totals.count} onCart={() => setCartOpen(true)} onInfo={setInfoTopic} />
       <main>
         <section className="hero" aria-labelledby="hero-heading">
-          <img className="hero-image" src="/images/hero-living.jpg" alt="Sunlit living room with considered furniture, plants, and natural materials" width="2000" height="1500" fetchPriority="high" />
+          <img className="hero-image" src={publicAsset('images/hero-living.jpg')} alt="Sunlit living room with considered furniture, plants, and natural materials" width="2000" height="1500" fetchPriority="high" />
           <div className="hero-wash" />
           <div className="page-width hero-inner">
             <div className="hero-copy">
@@ -146,7 +147,7 @@ export default function App() {
               <h1 id="hero-heading">Good things for<br />everyday living.</h1>
               <p>Thoughtful design. Everyday essentials.<br />Little things that make a big difference.</p>
               <button className="button button-primary hero-cta" onClick={() => navigate('all')}>Discover your next favorite <ArrowRight size={18} /></button>
-              <div className="hero-social-proof"><div className="avatar-stack"><img src="/images/avatar-1.jpg" alt="" width="30" height="30" /><img src="/images/avatar-2.jpg" alt="" width="30" height="30" /><img src="/images/avatar-3.jpg" alt="" width="30" height="30" /></div><div><span className="hero-stars">{Array.from({ length: 5 }, (_, index) => <Star key={index} size={11} fill="currentColor" strokeWidth={0} />)}</span><span>Loved by the everyday-minded</span></div></div>
+              <div className="hero-social-proof"><div className="avatar-stack"><img src={publicAsset('images/avatar-1.jpg')} alt="" width="30" height="30" /><img src={publicAsset('images/avatar-2.jpg')} alt="" width="30" height="30" /><img src={publicAsset('images/avatar-3.jpg')} alt="" width="30" height="30" /></div><div><span className="hero-stars">{Array.from({ length: 5 }, (_, index) => <Star key={index} size={11} fill="currentColor" strokeWidth={0} />)}</span><span>Loved by the everyday-minded</span></div></div>
             </div>
             <button className="hero-image-link" onClick={() => navigate('home')}><span>Make yourself at home</span><ArrowUpRight size={18} /></button>
           </div>
@@ -179,15 +180,15 @@ export default function App() {
           <div className="page-width">
             <div className="collection-heading"><div><span className="eyebrow">A little inspiration</span><h2 id="collections-heading">For the way you live.</h2></div><p>Considered collections for ordinary, lovely days.</p></div>
             <div className="collection-grid">
-              <button className="collection-tile" onClick={() => navigate('home')}><img src="/images/home-edit.jpg" alt="Thoughtfully arranged living room with a lounge chair and natural textures" loading="lazy" width="1000" height="600" /><div><span>Home, a little happier.</span><span className="collection-tile-link">Discover home & living <ArrowUpRight size={19} /></span></div></button>
-              <button className="collection-tile collection-tile-carry" onClick={() => navigate('carry')}><img src="/images/everyday-backpack.jpg" alt="A thoughtfully made backpack for daily adventures" loading="lazy" width="1000" height="600" /><div><span>Take the good things with you.</span><span className="collection-tile-link">Explore everyday carry <ArrowUpRight size={19} /></span></div></button>
+              <button className="collection-tile" onClick={() => navigate('home')}><img src={publicAsset('images/home-edit.jpg')} alt="Thoughtfully arranged living room with a lounge chair and natural textures" loading="lazy" width="1000" height="600" /><div><span>Home, a little happier.</span><span className="collection-tile-link">Discover home & living <ArrowUpRight size={19} /></span></div></button>
+              <button className="collection-tile collection-tile-carry" onClick={() => navigate('carry')}><img src={publicAsset('images/everyday-backpack.jpg')} alt="A thoughtfully made backpack for daily adventures" loading="lazy" width="1000" height="600" /><div><span>Take the good things with you.</span><span className="collection-tile-link">Explore everyday carry <ArrowUpRight size={19} /></span></div></button>
             </div>
           </div>
         </section>
         <section className="brand-note"><div className="page-width brand-note-inner"><div className="brand-note-icon"><Sprout size={29} strokeWidth={1.4} /></div><div><h2>A little more intention. A little more everyday joy.</h2><p>We believe in fewer, better things. Beautiful to look at. A pleasure to use. Made to be part of your day.</p></div><button className="text-link" onClick={() => setInfoTopic('story')}>Meet Form & Field <ArrowUpRight size={17} /></button></div></section>
       </main>
       <footer className="site-footer">
-        <div className="page-width footer-main"><div className="footer-brand"><a href="/" onClick={event => { event.preventDefault(); resetFilters(); scrollToTop() }} className="wordmark">form<span className="brand-amp">&</span>field.</a><p>Good things for the everyday.<br />Thoughtfully chosen, just for you.</p></div><div className="footer-column"><h3>Find your good thing</h3><button onClick={() => navigate('all')}>Shop all</button><button onClick={() => navigate('all', 'new')}>New arrivals</button><button onClick={() => navigate('all', 'bestsellers')}>Bestsellers</button></div><div className="footer-column"><h3>A little help</h3><button onClick={() => setInfoTopic('shipping')}>Shipping & delivery</button><button onClick={() => setInfoTopic('returns')}>Returns & exchanges</button><button onClick={() => setInfoTopic('contact')}>Contact us</button></div><div className="footer-last"><span className="footer-leaf"><Leaf size={20} /> Good by design.</span><p>Considered objects.<br />Everyday possibilities.</p><button className="text-link" onClick={() => setInfoTopic('story')}>Our story <ArrowUpRight size={16} /></button></div></div>
+        <div className="page-width footer-main"><div className="footer-brand"><a href={import.meta.env.BASE_URL} onClick={event => { event.preventDefault(); resetFilters(); scrollToTop() }} className="wordmark">form<span className="brand-amp">&</span>field.</a><p>Good things for the everyday.<br />Thoughtfully chosen, just for you.</p></div><div className="footer-column"><h3>Find your good thing</h3><button onClick={() => navigate('all')}>Shop all</button><button onClick={() => navigate('all', 'new')}>New arrivals</button><button onClick={() => navigate('all', 'bestsellers')}>Bestsellers</button></div><div className="footer-column"><h3>A little help</h3><button onClick={() => setInfoTopic('shipping')}>Shipping & delivery</button><button onClick={() => setInfoTopic('returns')}>Returns & exchanges</button><button onClick={() => setInfoTopic('contact')}>Contact us</button></div><div className="footer-last"><span className="footer-leaf"><Leaf size={20} /> Good by design.</span><p>Considered objects.<br />Everyday possibilities.</p><button className="text-link" onClick={() => setInfoTopic('story')}>Our story <ArrowUpRight size={16} /></button></div></div>
         <div className="page-width footer-bottom"><span>© {new Date().getFullYear()} Form & Field. A thoughtfully made demo.</span><span><Globe2 size={13} /> United States · USD</span><span className="payment-methods"><span>VISA</span><span>mastercard</span><span>AMEX</span><LockKeyhole size={15} /></span></div>
       </footer>
       {selectedProduct && <ProductDialog key={selectedProduct.id} product={selectedProduct} initialColor={selectedColor} remainingStock={remainingStock(selectedProduct)} saved={savedIds.includes(selectedProduct.id)} onSave={() => toggleSaved(selectedProduct.id)} onClose={() => setSelectedProduct(null)} onAdd={(color, quantity) => { addToBag(selectedProduct, color, quantity); setSelectedProduct(null) }} />}
