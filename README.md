@@ -25,15 +25,11 @@ npm run test:e2e
 
 ## GitHub Pages 发布
 
-在 `main` 源码分支运行：
+`.github/workflows/deploy.yml` 在 PR 上运行测试但不发布；推送 `main` 或手动运行 workflow 时，会先执行 `npm run predeploy`，再把 `dist/` 发布到 GitHub Pages。
 
-```bash
-npm run deploy
-```
+首次启用时，在仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。之后将 workflow 推送到 `main`，在 **Actions** 页面查看运行记录和部署地址。
 
-发布前自动执行单元测试、生产打包，以及桌面和手机在 `/overseas-mall-2/` 子路径下的资源与购物流程测试。全部通过后，仅把 `dist/` 内容发布到 `gh-pages` 分支根目录，并保留该分支历史。
-
-GitHub 仓库的 Settings → Pages 应选择 Deploy from a branch，分支为 `gh-pages`、目录为 `/ (root)`。不要把源码分支的 `index.html` 作为静态页面发布。
+`npm run deploy` 是旧的手动分支发布方式。启用 Actions 后请使用 Actions 发布，不要将 Pages 来源切回 `gh-pages` 分支。
 
 开发地址仍是 `http://localhost:5173/`。生产构建和 `npm run preview` 使用 `/overseas-mall-2/`；脚本、样式、图片、字体和图标都会包含此项目路径。修改仓库名称时需同步更新 `vite.config.ts` 中的 `GITHUB_PAGES_BASE`。
 
